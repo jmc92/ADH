@@ -4,6 +4,7 @@
 // @description	  Notification and Log system for dAmn
 // @include       https://chat.deviantart.com/chat/*
 // @grant         GM_addStyle
+// @grant GM_xmlhttpRequest
 // ==/UserScript==
 
 /*
@@ -12,7 +13,7 @@
  * Do not modify or distribute without consent from the author
  * Partially because if you modify this the script will fail a lot
  * Otherwise, enjoy
- * 
+ *
  * JCoolArts-Sorry dude, but you're not updating this anymore it seems, so I'm doing it.
  */
 
@@ -538,7 +539,8 @@ var handler = {
 							cls="privAccordion "+channel;
 							break;
 						}
-						string = "<table class='table" + type + "'>" + "<tr>" + "<td>&nbsp;</td>" + "<td>Tab</td>" + "<td>Join</td>" + "<td>Part</td>" + "<td>Kick</td>" + "</tr>" + "<tr>" + "<td>Sound</td>" + "<td><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "0'" + (array[0] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "<td><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "2'" + (array[2] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "<td><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "4'" + (array[4] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "<td><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "6'" + (array[6] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "</tr>" + "</table>";
+
+						string = "<table class='table" + type + "'>" + "<tr>" + "<td>&nbsp;</td>" + "<td>Tab</td>" + "<td style=\"Opacity:.0;\">Join</td>" + "<td style=\"Opacity:.0;\">Part</td>" + "<td style=\"Opacity:.0;\">Kick</td>" + "</tr>" + "<tr>" + "<td>Sound</td>" + "<td><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "0'" + (array[0] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "<td style=\"Opacity:.0;\"><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "2'" + (array[2] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td style=\"Opacity:.0;\">" + "<td style=\"Opacity:.0;\"><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "4'" + (array[4] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "<td style=\"Opacity:.0;\"><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "6'" + (array[6] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "</tr>" + "<tr style=\"Opacity:.0;\">" + "<td>Toast</td>" + "<td><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "1'" + (array[1] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "<td><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "3'" + (array[3] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "<td><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "5'" + (array[5] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "<td><input type='checkbox'"+(cls? " class='"+cls+"'":"")+" id='check" + name + "7'" + (array[7] ? " checked='checked'": "") + (disabled ? " disabled='true'": "")+" /></td>" + "</tr>" + "</table>";
 						return string;
 					},
 	isEmpty: 		function(obj) {
@@ -1667,3 +1669,647 @@ function freeFunctionString(str){
 	return str.replace(/^\s*function\s*\(\)\s*\{/, "").replace(/\}\s*$/, "")
 }
 
+
+
+//DAMN GOODIES START OF SCRIPT
+
+
+function dAmnGoodies_Script(){
+  var DG = {};
+  window.DG = DG;
+
+  DG.version = "3.3.2";
+
+  DG.goodies = {};
+  DG.Goodie = function(name, defaultData, setup){
+    DG.goodies[name] = typeof DG.goodies[name] == "object" ? DG.goodies[name]:typeof defaultData == "object"?defaultData:{};
+    var newData;
+    if(typeof setup == "function"){
+      try{
+        newData = setup.call(this, DG.goodies[name], name);
+      }catch(ex){
+        console.error("dAmnGoodies Error (goodies_setup) : "+ex.message);
+      }
+    }
+    if(typeof newData == "object"){
+      DG.goodies[name] = newData;
+    }
+  };
+
+  DG.save = function(){
+    try{
+      localStorage.setItem("dAmnGoodies3", JSON.stringify(DG.goodies));
+    }catch(ex){
+      console.error("dAmnGoodies Error (save_goodies) : "+ex.message);
+    }
+    return DG;
+  };
+
+  DG.load = function(){
+    var loaded;
+    try{
+      loaded = localStorage.getItem("dAmnGoodies3");
+    }catch(ex){
+      console.error("dAmnGoodies Error (load_goodies) : "+ex.message);
+    }
+    try{
+      if(!loaded){
+        loaded = {};
+      }else{
+        loaded = JSON.parse(loaded);
+      }
+      DG.goodies = loaded;
+    }catch(ex){
+      DG.goodies = {};
+    }
+    return DG;
+  };
+
+  DG.standardToggle = function(settings, args, enableMsg, disableMsg){
+    if(args === null || args === ""){
+      settings.enabled = !settings.enabled;
+      dAmn.chat.notice(settings.enabled?enableMsg:disableMsg,2);
+      DG.save();
+    }else{
+      if(args == "on"){
+        settings.enabled = true;
+        dAmn.chat.notice(enableMsg,2);
+        DG.save();
+      }
+      if(args == "off"){
+        settings.enabled = false;
+        dAmn.chat.notice(disableMsg,2);
+        DG.save();
+      }
+    }
+  };
+
+  DG.setup = function(){
+    DG.load();
+
+
+
+    new DG.Goodie("youtube", {enabled: true}, function(settings){
+      DG.youtube = {};
+      DG.youtube.videos = {};
+      DG.youtube.onPlayerReady = function(event){};
+      DG.youtube.onPlayerStateChange = function(event){};
+      DG.youtube.loadVideo = function(elId){
+        try{
+          if(YT && YT.Player){
+            var player = new YT.Player(elId, {
+              height: '240',
+              width: '320',
+              videoId: elId.split(".")[1],
+              events: {
+                'onReady': DG.youtube.onPlayerReady,
+                'onStateChange': DG.youtube.onPlayerStateChange
+              }
+            });
+            DG.youtube.videos[elId] = player;
+            return player;
+          }
+        }catch(ex){
+          console.error("dAmnGoodies Error (youtube.loadVideo): ", ex);
+        }
+      };
+
+      window.onYouTubeIframeAPIReady = function(){
+        for(var elId in DG.youtube.videos){
+          if(!DG.youtube.videos[elId]){
+            DG.youtube.loadVideo(elId);
+          }
+        }
+      };
+
+      dAmn.command("youtube", 1, function(args){
+        DG.standardToggle(settings, args, "Youtube Videos enabled in chat.", "Youtube Videos disabled in chat.");
+      });
+      try{
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      }catch(ex){
+        console.error("dAmnGoodies Error (youtube.iframe_api): ", ex);
+      }
+
+      DG.youtube.getYoutubeId = function(msg){
+        var result = /(http(s)?\:\/\/)?(((www\.)?youtube\.com|youtu\.?be)\/(watch\?v=)?)([\-_\w]+)/gi.exec(msg);
+        if(result){
+          return result[7];
+        }else{
+          return null;
+        }
+      };
+
+      DG.youtube.embedYouTubePlayer = function(ns, id){
+        var chatroom = dAmn.chat.get(ns);
+        if(!chatroom) return;
+        try{
+          var player = document.createElement("div");
+          player.id = "youtube."+id+"."+(new Date()).getTime();
+          chatroom.channels.main.addDiv(player, null, 0);
+          DG.youtube.videos[player.id] = null;
+          DG.youtube.loadVideo(player.id);
+        }catch(ex){
+          console.error("dAmnGoodies Error (youtube.embedPlayer): ", ex);
+        }
+      };
+
+      function doYouTube(event){
+        if(settings.enabled){
+          try{
+            var msg = event.args[1];
+            var ytid = DG.youtube.getYoutubeId(msg);
+            if(ytid){
+              var chatroom = this;
+              var ns = this.cr.ns;
+              event.after(function(){
+                try{
+                  DG.youtube.embedYouTubePlayer(ns, ytid);
+                  chatroom.scroll_once = true;
+                  dAmn_InvalidateLayout();
+                }catch(ex){
+                  console.error("dAmn Goodies Error (Youtube after onMsg): ", ex);
+                }
+              });
+            }
+          }catch(ex){
+            console.error("dAmnGoodies Error (Youtube.onMsg): ",ex);
+          }
+        }
+      }
+
+      dAmn.chat.events.onMsg(doYouTube);
+      dAmn.chat.events.onAction(doYouTube);
+
+    });
+
+
+
+    new DG.Goodie("scrolldown", {enabled: true}, function(settings){
+      dAmn.command("scrolldown", 0, function(args){
+        DG.standardToggle(settings, args, "Enabled: Scrolling to bottom of chat on double click.", "Disabled: Scrolling to bottom of chat on double click.");
+      });
+      document.body.ondblclick = function(){
+        if(!settings.enabled) return;
+        var chatroom = dAmn.chat.get();
+        var scroll_el = chatroom.channels.main.scroll_el;
+        scroll_el.scrollTop = scroll_el.scrollHeight;
+      };
+    });
+
+    DG.request = {};
+    DG.request.url = null;
+    DG.request.callback = null;
+
+    dAmn.command("stalk", 1, function(args){
+      var username = args;
+      DG.request.url = "http://"+username+".deviantart.com";
+      DG.request.callback = function(error, response){
+        if(error){
+          console.error(error);
+        }else{
+          try{
+            var profile = document.implementation.createHTMLDocument("profile");
+            profile.documentElement.innerHTML = response;
+            var user_info = profile.body.getElementsByClassName("super-secret-why-short")[0];
+            var user_info_spans = user_info.getElementsByTagName("span");
+            var name_etc = user_info_spans[3].innerHTML;
+            var output = [];
+            var name = name_etc.split(">")[1].split("<")[0];
+            output.push(name);
+            var asl = name_etc.split("</strong>")[1];
+            while(asl.slice(-1) == " "){
+              asl = asl.slice(0,-1);
+            }
+            output.push(asl);
+            var artist_type_etc = user_info_spans[2].getElementsByTagName("strong");
+            [].slice.call(artist_type_etc).forEach(function(el){
+              if(el.innerText && el.innerText != " ") output.push(el.innerText);
+            })
+            var output_str = output.join(", ");
+            dAmn.chat.notice(username+": "+output.join(", "), 7);
+          }catch(ex){
+            console.error("dAmn Goodies Error (stalk): "+ex);
+          }
+        }
+      };
+    });
+
+    DG.save();
+  };
+
+  DWait.ready(['jms/pages/chat07/chatpage.js', 'jms/pages/chat07/dAmn.js', 'jms/pages/chat07/dAmnChat.js'], function() {
+    DG.setup();
+  });
+}
+
+function dAmnHelper_Script(){
+  var dAmn = {};
+  function SetupdAmn(){
+    window.dAmn = dAmn;
+
+    dAmn.original = {};
+    dAmn.replaced = {};
+
+    dAmn.event = {};
+    dAmn.event.hook = function(method){
+      try{
+        var original = window;
+        var path = method.split(".");
+        path.forEach(function(step){
+          original = original[step];
+        });
+        if(typeof original == "function" && typeof dAmn.replaced[method] == "undefined"){
+          dAmn.original[method] = original;
+          dAmn.replaced[method] = function(){
+            try{
+              var args = Array.prototype.slice.call(arguments);
+              var prevent = false;
+              var after_calls = [];
+              var event = {
+                args: args,
+                preventDefault: function(){
+                  prevent = true;
+                },
+                returnValue: undefined,
+                after: function(fn){
+                  if(typeof fn == "function"){
+                    after_calls.push(fn);
+                  }
+                }
+              };
+              dAmn.event.emit.apply(this, [method, event]);
+              var methodReturn;
+              if(!prevent){
+                if(typeof this == "function"){
+                  methodReturn = dAmn.original[method].apply(this, args);
+                }else{
+                  if(path[1] == "prototype"){
+                    methodReturn = dAmn.original[method].apply(this, args);
+                  }else{
+                    methodReturn = new dAmn.original[method](args[0],args[1],args[2],args[3],args[4],args[5],args[6]);
+                    for(var attr in methodReturn){
+                      this[attr] = methodReturn[attr];
+                    }
+                  }
+                }
+                if(typeof event.after == "function"){
+                  after_calls.forEach(function(fn){
+                    try{
+                      fn.call(this, methodReturn);
+                    }catch(ex){
+                      console.error("dAmn Helper Error (event.hook.after): "+ex);
+                    }
+                  });
+                }
+              }
+              if(typeof this == "function" || path[1] == "prototype"){
+                return (typeof event.returnValue == "undefined") ? methodReturn : event.returnValue;
+              }
+            }catch(ex){
+              console.error("dAmn Helper Error (event.replacedMethod): "+ex);
+            }
+          };
+          if(["dAmnChat", "dAmnChanChat", "dAmnChanMainChat", "dAmnChatInput"].indexOf(method)>-1){
+            dAmn.replaced[method].prototype = dAmn.original[method].prototype;
+          }
+          original = window;
+          path.forEach(function(step, i){
+            if(i == path.length-1){
+              original[step] = dAmn.replaced[method];
+            }else{
+              original = original[step];
+            }
+          });
+          if(method.indexOf("dAmnChanChat.prototype.") === 0){
+            dAmnChanMainChat.prototype[path[path.length-1]] = dAmn.replaced[method];
+            dAmn.chat.forEach(function(chatroom){
+              chatroom.channels.main[path[path.length-1]] = dAmn.replaced[method];
+            });
+          }
+          if(method.indexOf("dAmnChatInput.prototype.") === 0){
+            dAmn.chat.forEach(function(chatroom){
+              chatroom.channels.main.input[path[path.length-1]] = dAmn.replaced[method];
+            });
+          }
+          if(method.indexOf("dAmnChat.prototype.") === 0){
+            dAmn.chat.forEach(function(chatroom){
+              chatroom[path[path.length-1]] = dAmn.replaced[method];
+            });
+          }
+        }
+      }catch(ex){
+        console.error("dAmn Helper Error (event.hook): "+ex);
+      }
+    };
+    dAmn.event.listeners = {};
+    dAmn.event.emit = function(method){
+      try{
+        if(Array.isArray(dAmn.event.listeners[method])){
+          var args = Array.prototype.slice.call(arguments, 1);
+          var listeners = dAmn.event.listeners[method];
+          for(var i=0; i<listeners.length; i++){
+            listeners[i].apply(this, args);
+          }
+        }
+      }catch(ex){
+        console.error("dAmn Helper Error (event.emit): "+ex);
+      }
+    };
+    dAmn.event.listen = function(method, handler){
+      try{
+        if(!Array.isArray(dAmn.event.listeners[method])){
+          dAmn.event.listeners[method] = [];
+        }
+        dAmn.event.hook(method);
+        dAmn.event.listeners[method].push(handler);
+      }catch(ex){
+        console.error("dAmn Helper Error (event.listen): "+ex);
+      }
+    };
+
+    dAmn.chat = {};
+    dAmn.chat.events = {};
+    var methods = {
+      onMsg: "dAmnChanChat.prototype.onMsg",
+      onAction: "dAmnChanChat.prototype.onAction",
+      onResize: "dAmnChanChat.prototype.onResize",
+      Clear: "dAmnChanChat.prototype.Clear",
+      onSmileyClick: "dAmnChanChat.prototype.onSmileyClick",
+      onSmiley: "dAmnChanChat.prototype.onSmiley",
+      takeFocus: "dAmnChanChat.prototype.takeFocus",
+      setTopic: "dAmnChanChat.prototype.setTopic",
+      makeText: "dAmnChanChat.prototype.makeText",
+      FormatMsg: "dAmnChanChat.prototype.FormatMsg",
+      Send: "dAmnChat.prototype.Send",
+      onSelfEvent: "dAmnChanMainChat.prototype.onSelfEvent"
+    };
+
+    try{
+      for(var m in methods){
+        dAmn.chat.events[m] = (function(method){
+          return function(handler){
+            return dAmn.event.listen(method, handler);
+          };
+        })(methods[m]);
+      }
+    }catch(ex){
+      console.error("dAmn Helper Error (chat.events.listen): "+ex);
+    }
+
+    dAmn.resetHistory = function(el){
+      if (this.history_pos != -1  && this.history[this.history_pos] == el.value) { // posting from history.. move to the end
+        var before = this.history.slice(0,this.history_pos);
+        var after  = this.history.slice(this.history_pos+1);
+        this.history = before.concat(after).concat( this.history[this.history_pos] );
+      } else {
+        // add to history -- limit to 300
+        this.history = this.history.concat( el.value );
+        if( this.history.length > 300 )
+          this.history = this.history.slice(1);
+      }
+      this.history_pos = -1;
+    };
+
+    dAmn.command = function(name, argsRequired, onCommand){
+      try{
+        if(typeof onCommand != "function"){
+          throw "dAmn.command: onCommand must be a function";
+        }
+        if(typeof name != "string"){
+          throw "dAmn.command: name must be a string";
+        }
+        name = name.toLowerCase();
+        argsRequired = argsRequired?1:0;
+
+        dAmn.event.listen("dAmnChatInput", function(event){
+          event.after(function(input){
+            input.cmds[name] = [argsRequired];
+          });
+        });
+
+        dAmn.chat.forEach(function(chatroom){
+          chatroom.channels.main.input.cmds[name] = [argsRequired];
+        });
+
+        dAmn.event.listen("dAmnChatInput.prototype.onKey", function(event){
+          try{
+            var e = event.args[0];
+            var kc = event.args[1];
+            var force = event.args[2];
+            var el = this.chatinput_el;
+            if(kc == 13 && ( force || !this.multiline || e.shiftKey || e.ctrlKey )){
+              if(el.value){
+                if(!(e.shiftKey || (!this.multiline && e.ctrlKey))){
+                  var cmdre = el.value.match( /^\/([a-z]+)([\s\S]*)/m );
+                  if(!cmdre){
+                    return;
+                  }
+                  var cmd  = cmdre[1].toLowerCase();
+                  var args = null;
+                  if (cmdre[2]) {
+                    var tmp = cmdre[2].match(/^\s([\s\S]*)/);
+                    if( tmp && tmp.length )
+                      args = tmp[1];
+                  }
+                  if(cmd == name){
+                    dAmnChatTabs_activate( this.cr.ns, true );
+                    delete this.tablist;
+                    dAmn.resetHistory.call(this, el);
+                    if(this.cmds[cmd][0]) {
+                      if (!args) {
+                        this.cr.channels.main.onErrorEvent( cmd, 'insufficient parameters' );
+                      }else{
+                        onCommand.call(this, args);
+                      }
+                    }else{
+                      onCommand.call(this, args);
+                    }
+                    el.value='';
+                    el.focus();
+                    event.preventDefault();
+                    event.returnValue = false;
+                  }
+                }
+              }
+            }
+          }catch(ex){
+            console.error("dAmn Helper Error (command.onKey): "+ex);
+          }
+        });
+      }catch(ex){
+        console.error("dAmn Helper Error (command): "+ex);
+      }
+    };
+
+    dAmn.send = {};
+    dAmn.send.msg = function(ns, text){
+      var chatroom = dAmn.chat.get(ns);
+      if(chatroom && chatroom.Send){
+        chatroom.Send("msg", "main", text);
+      }
+    };
+    dAmn.send.action = function(ns, text){
+      var chatroom = dAmn.chat.get(ns);
+      if(chatroom && chatroom.Send){
+        chatroom.Send("action", "main", text);
+      }
+    };
+    dAmn.send.join = function(ns){
+      dAmn_Join(ns);
+    };
+    dAmn.send.part = function(ns){
+      dAmn_Part(ns?ns:dAmn.chat.getActive());
+    }
+    dAmn.send.kick = function(ns, user, reason){
+      dAmn_Kick( ns?ns:dAmn.chat.getActive(), user, dAmnEscape(reason) );
+    };
+    dAmn.send.ban = function(ns, user){
+      var chatroom = dAmn.chat.get(ns);
+      if(chatroom && chatroom.Send){
+        chatroom.Send("ban", user, "");
+      }
+    };
+    dAmn.send.unban = function(ns, user){
+      var chatroom = dAmn.chat.get(ns);
+      if(chatroom && chatroom.Send){
+        chatroom.Send("unban", user, "");
+      }
+    };
+    dAmn.send.promote = function(ns, user, privclass){
+      var chatroom = dAmn.chat.get(ns);
+      if(chatroom && chatroom.Send){
+        chatroom.Send("promote", user, privclass);
+      }
+    };
+    dAmn.send.demote = function(ns, user, privclass){
+      var chatroom = dAmn.chat.get(ns);
+      if(chatroom && chatroom.Send){
+        chatroom.Send("demote", user, privclass);
+      }
+    };
+    dAmn.send.whois = function(user){
+      dAmn_Get( 'login:'+user, 'info' );
+    };
+    dAmn.send.clear = function(ns){
+      var chatroom = dAmn.chat.get(ns);
+      if(chatroom && chatroom.channels.main.Clear){
+        chatroom.channels.main.Clear();
+      }
+    };
+    dAmn.send.title = function(ns, text){
+      dAmn_Set( ns?ns:dAmn.chat.getActive(), "title", dAmnEscape(text) );
+    };
+    dAmn.send.topic = function(ns, text){
+      dAmn_Set( ns?ns:dAmn.chat.getActive(), "topic", dAmnEscape(text) );
+    };
+
+    dAmn.chat.chatrooms = dAmnChats;
+    dAmn.chat.tabs = dAmnChatTabs;
+    dAmn.chat.stack = dAmnChatTabStack;
+    dAmn.chat.getActive = function(returnChatroom){
+      if(returnChatroom){
+        return dAmn.chat.get(dAmnChatTab_active);
+      }
+      return dAmnChatTab_active;
+    };
+    dAmn.chat.activate = function(ns){
+      dAmnChatTabs_activate( ns, true );
+    };
+    dAmn.chat.get = function(ns){
+      try{
+        if(typeof ns != "string"){
+          ns = dAmnChatTab_active;
+        }else{
+          for(var room in dAmn.chat.chatrooms){
+            if(room.toLowerCase() == ns.toLowerCase()){
+              ns = room;
+              break;
+            }
+          }
+        }
+        return dAmn.chat.chatrooms[ns];
+      }catch(ex){
+        console.error("dAmn Helper Error (chat.get): "+ex);
+      }
+    };
+    dAmn.chat.getTab = function(chatroom){
+      if(typeof chatroom == "string"){
+        return dAmn.chat.tabs[chatroom];
+      }
+      return dAmn.chat.tabs[dAmn.chat.getActive()];
+    };
+    dAmn.chat.forEach = function(fn){
+      if(typeof fn != "function") return;
+      for(var c in dAmn.chat.chatrooms){
+        fn.call(dAmn.chat.chatrooms[c], dAmn.chat.chatrooms[c], c);
+      }
+    };
+    dAmn.chat.getTitle = function(ns){
+      var chatroom = dAmn.chat.get(ns);
+      return chatroom.title_el.innerHTML;
+    };
+    dAmn.chat.getTopic = function(ns){
+      var chatroom = dAmn.chat.get(ns);
+      return chatroom.channels.main.topic_el.innerHTML;
+    };
+    dAmn.chat.notice = function(str, timeout, spanClass){
+      var chatroom = dAmn.chat.get();
+      spanClass = spanClass?spanClass:"";
+      dAmn_addTimedDiv( chatroom.channels.main.error_el, "damn-error "+spanClass, str, timeout );
+    };
+  }
+
+  DWait.ready(['jms/pages/chat07/chatpage.js', 'jms/pages/chat07/dAmn.js', 'jms/pages/chat07/dAmnChat.js'], function() {
+    SetupdAmn();
+  });
+}
+
+function execute_script(id, script){
+	var el = document.createElement('script');
+	if(id) el.id = id;
+  if(typeof script == "function"){
+    script = "("+script.toString()+")();";
+  }
+  if(typeof script == "string"){
+    el.appendChild(document.createTextNode(script));
+    document.getElementsByTagName("head")[0].appendChild(el);
+  }
+	return el;
+}
+execute_script("dAmnHelper_Script", dAmnHelper_Script);
+execute_script("dAmnGoodies_Script", dAmnGoodies_Script);
+
+// HttpRequests Workaround
+
+var requestInterval = null;
+var $w = unsafeWindow;
+function checkRequests(){
+  if($w.DG && $w.DG.request && $w.DG.request.url && $w.DG.request.callback){
+    var url = $w.DG.request.url;
+    var callback = $w.DG.request.callback;
+    $w.DG.request.url = null;
+    $w.DG.request.callback = null;
+    var xhr = new GM_xmlhttpRequest({
+      method: "GET",
+      url: url,
+      onload: function(xhr){
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            callback(null, xhr.responseText);
+          }else{
+            callback(xhr.statusText);
+          }
+        }
+      },
+      onerror: function(xhr){
+        callback(xhr.statusText);
+      }
+    });
+  }
+}
+
+requestInterval = setInterval(checkRequests, 500);
