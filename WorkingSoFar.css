@@ -1,0 +1,192 @@
+
+.chatroom .ch-ctrl
+{margin:0 10px !important;padding:0 0 0 7px !important;background:none !important;border:none !important;}
+
+#logindock .textna.blend
+{position:absolute !important;margin-top:-9999% !important;}
+
+.chatroom #logindock .text span:first-child
+{display:none !important;}
+
+.damn-lo-row-top
+{background:#ccd9c8 !important;}
+
+.damnc-tabbar-outer
+{padding-top:10px !important;margin:0!important;
+background-image: url("https://orig00.deviantart.net/2d76/f/2018/237/e/1/background1_by_jcoolarts-dcl53w5.gif") top left repeat-x !important
+backgournd-color:#b8cab3;}
+
+body.chatroom #topni.tl
+{position:absolute !important;top:1px !important;left:0 !important;height:45px !important;width:15px !important;display:block !important;background:transparent url("https://orig00.deviantart.net/b985/f/2018/237/6/b/corners1_by_jcoolarts-dcl54c4.gif") top left no-repeat !important;border:none !important;}
+
+#top i.tl i, #top i.tl b, #top i.tr i, #top i.trnb
+{border:none !important;}
+
+body.chatroom #topni.tr
+{position:absolute !important;top:1px !important;right:0 !important;height:45px !important;width:15px !important;display:block !important;background:transparent url("https://orig00.deviantart.net/b985/f/2018/237/6/b/corners1_by_jcoolarts-dcl54c4.gif") top left no-repeat !important;border:none !important;}
+
+.damnc-tabbar a
+{color:#4a5550 !important;padding:6px 4px 6px 6px !important;margin:0 3px !important;background:transparent url("https://orig00.deviantart.net/debc/f/2018/237/8/b/top1_by_jcoolarts-dcl554n.gif") top left !important;}
+
+.damnc-tabbar a i
+{background:transparent url("https://orig00.deviantart.net/fa2a/f/2018/237/1/8/top2_by_jcoolarts-dcl560d.gif") top right !important;}
+
+.damnc-tabbar a:hover
+{background:transparent url("https://orig00.deviantart.net/17b8/f/2018/237/9/4/top3_by_jcoolarts-dcl568p.gif") top left !important;}
+
+.damnc-tabbar a:hover i
+{background:transparent url("https://orig00.deviantart.net/17b8/f/2018/237/9/4/top3_by_jcoolarts-dcl568p.gif") top right !important;}
+
+a[style="color: rgb(51, 51, 51);font-weight:bold;"],a[style="font-weight: bold;color:rgb(51, 51, 51);"],a[style="font-weight: bold;"]{color:#626e66 !important;}
+a[style="color: rgb(182, 66, 66);font-weight:bold;"], a[style="font-weight: bold;color:rgb(182, 66, 66);"], a[style="font-weight: bold;color:rgb(182, 66, 66)"], a[style="color: rgb(182,66,66);font-weight:bold"]{color:#0d84ac !important;background:transparent url("https://orig00.deviantart.net/17b8/f/2018/237/9/4/top3_by_jcoolarts-dcl568p.gif") top left !important;}
+
+a[style="color: rgb(182, 66, 66);font-weight:bold;"] i, a[style="font-weight: bold;color:rgb(182, 66, 66);"] i, a[style="font-weight: bold;color:rgb(182, 66, 66)"] i, a[style="color: rgb(182, 66, 66);font-weight:bold"] i{background:transparent url("https://orig00.deviantart.net/17b8/f/2018/237/9/4/top3_by_jcoolarts-dcl568p.gif") top right !important;}
+
+.damnc-tabbar strong
+{padding:6px 4px 7px 8px !important;margin:1px 3px -2px !important;background:transparent url("https://orig00.deviantart.net/17b8/f/2018/237/9/4/top3_by_jcoolarts-dcl568p.gif") top left !important;}
+
+.damnc-tabbar strong i
+{background:transparent url("https://orig00.deviantart.net/17b8/f/2018/237/9/4/top3_by_jcoolarts-dcl568p.gif") top right !important;}
+
+.damnc-tabbar strong.withX
+{padding:6px 24px 7px 8px !important;margin:1px 3px -2px !important;background:transparent url("https://orig00.deviantart.net/17b8/f/2018/237/9/4/top3_by_jcoolarts-dcl568p.gif") top left !important;}
+
+.damnc-tabbar strong.withx i
+{background:transparent url("https://orig00.deviantart.net/17b8/f/2018/237/9/4/top3_by_jcoolarts-dcl568p.gif") top right !important;}
+
+.withx img{margin-top:3px !important;opacity: .25 !important;}
+
+.withX img:hover{opacity:1 !important;}
+
+.damnc-morelink
+{padding:0px 0px 0px 22px !important;margin:6px 0px 0px 6px !important;color:#879888 !important;line-height:16px !important;
+background:transparent url("https://orig00.deviantart.net/ef93/f/2018/237/5/5/plus_by_jcoolarts-dcl59r1.gif") top left no-repeat !important;}
+
+.damnc-morelink:hover
+{color:#343434 !important;
+background:transparent url("https://orig00.deviantart.net/ef93/f/2018/237/5/5/plus_by_jcoolarts-dcl59r1.gif") bottom left no-repeat !important;}
+
+.damnc-morelink img
+{display:none !important;}.damnc-helplink{padding:0px 0px 0px 22px !important;margin:6px !important;color:#879888 !important;line-height:16px !important;background:transparent url("https://orig00.deviantart.net/ef93/f/2018/237/5/5/plus_by_jcoolarts-dcl59r1.gif") top left no-repeat !important;}
+
+.damnc-helplink img
+{display:none !important;}.damnc-helplink{padding:0px 0px 0px 28px !important;margin:6px !important;color:#879888 !important;line-height:16px !important;background:transparent url("https://orig00.deviantart.net/ff8b/f/2018/237/3/b/halp_by_jcoolarts-dcl5a1x.gif") top left no-repeat !important;}
+
+
+.damnc-helplink:hover
+{color:#343434 !important;
+background:transparent url("https://orig00.deviantart.net/ff8b/f/2018/237/3/b/halp_by_jcoolarts-dcl5a1x.gif") bottom left no-repeat !important;}
+
+.damnc-helplink img{display:none !important;}
+
+damncrc-chat-window::after.damncrc-chat-window
+{padding:7px !important;border:1px solid #a3b4a4 !important;border-top:1px solid #e1ebe2 !important;}.damncr .timestamp{color:#a0b19f !important;font-weight:normal; !important; }
+
+damncrc-chat-window::before.damncrc-chat-window
+{padding:7px !important;border:1px solid #a3b4a4 !important;border-top:1px solid #e1ebe2 !important;}.damncr .timestamp{color:#a0b19f !important;font-weight:normal; !important; }
+
+.damncr-title{margin:4px 5px !important;}
+.damncrc-topic
+{padding:6px !important;border:none !important;border-right:1px solid #a2b4a4 !important;border-bottom:1px solid #a6b2a6 !important;background:#e6ede4 url("https://orig00.deviantart.net/b0c8/f/2018/237/f/b/topic_by_jcoolarts-dcl62v4.gif") top left no-repeat !important;margin-top:1px !important;}
+.damncr-title img{max-height:30px;}
+
+.damncr-title, .damncr-title a{color:#565c58!important;}
+
+
+
+.damncr .other-hl .text span{background:none !important;}
+.damncr .msg
+{font-size:12px !important;line-height:16px !important;padding:3px 5px !important;margin-top:3px !important;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;}
+.damncr .self-hl{color:#696969 !important;background:#eff4ee !important;}
+.damncr .self-hl span{background:none !important;}
+.damncr .other-hl{color:#0d84ac !important;background:#eff4ee !important;}
+.damncr .other-hl span{background:none !important;}
+.damncr .join, .damncr .part{color:#a0b19f !important;}
+.damncr .join .from, .damncr .part .from{font-weight:normal !important;}
+.damncrn.action{font-style:italic;color:#696969;}
+.damncrc-chat .alt0{color:#0d84ac !important; !important;}.kicked .inner .from span{color:#ff3600 !important;}
+.kicked .inner .text{color:#ff3600 !important;font-weight:bold !important;line-height:40px !important;text-decoration:underline !important;}.kicked .inner .from span:before{content:url(http://e.deviantart.com/emoticons/p/police.gif) !important}sub,sup{font-size:7pt !Important}.damncrc-chat br{display:none !important}.damncrc-chat span br{display:inline !important}.damncrc-chat .damncri-member{white-space:normal !important}.damncrc-chat .userinfo-outer{padding-top:1px !important;padding-left:1px !important;border:none !important;border:1px solid #a6b2a6 !important;background-color:#fff !important;margin:3px 0 !important}.damncrc-chat .userinfo-inner{background-color:#e6ede4 !important}.damncrc-chat .userinfo{margin:2px !important;padding:0!important;border:none !important;background:#e6ede4 !important}
+
+.damncrc-chat .userinfo .damncr-close{background:transparent url("https://orig00.deviantart.net/4621/f/2018/237/b/6/close_by_jcoolarts-dcl5c2h.gif") center center no-repeat !important;height:20px !important;width:20px !important;overflow:hidden !important}.damncrc-chat .userinfo .damncr-close img[title="close"]{display:none !important}.damncrc-chat .userinfo .damncr-close:hover img[title="close"]{display:block !important}.damncrc-chat .userinfo .alt1{background:#e6ede4 !important}.damncrc-chat .userinfo .avatar{padding:0!important;background:#e6ede4 !important}.damncrc-chat .userinfo .avatar img{border:1px solid #e6ede4 !important;padding:4px !important}.damncrc-chat .userinfo .avatar img:hover{border:1px solid #a6b2a6 !important}.damncrc-chat .userinfo .bodyarea{margin:0!important;background:#e6ede4 !important}.damncrc-chat .userinfo .bodyarea .read{font-size:11px !important;color:#89928d !important}.damncrc-chat .userinfo .bodyarea .read a{color:#3c84b8 !important}.damncrc-chat .userinfo .bodyarea .read a:hover{color:#3c84b8 !important}.damncri-member .bodyarea ul, .userinfo .read ul{margin-left:7px !important}
+
+.userinfo .bodyarea .read strong{margin-left:8px !important;line-height:16px !important}.userinfo .con area ul, .userinfo .bodyarea .read .con area strong{margin-left:0 !important}.userinfo .bodyarea div{border:none  !important}.userinfo .bodyarea .con area acronym:after{content:" That's "attr(title)". :)" !important}.damncrc-chat-window .alt1-left-border{border-left:55px solid #e6ede4 !important}.damncrc-chat-window .damncrc-chat .userinfo .bodyarea .read{padding-left:5px!important}.damncrc-chat img[src*="/avatars/"]{height:50px!important}.damn-lo-row-flex{margin-right:10px !important}.damn-lo-col-right{background:#d7e1d6 url("https://orig00.deviantart.net/6350/f/2018/237/0/e/wtftiny_by_jcoolarts-dcl5zo8.gif") top left repeat-y !important;border-left:10px solid #ccd9c8 !important;border-top:1px solid #ccd9c8 !important}.damncr-members{font-size:11px !important;padding:0!important}.simple{margin:0 0 10px 0 !important;padding:0!important;overflow:hidden !important}
+
+.simple dt{border:1px solid #9cb1a2 !important;border-right:none !important;background:#b8cab3 url("https://orig00.deviantart.net/7359/f/2018/237/9/b/liner_by_jcoolarts-dcl5zy6.gif") top left repeat-x !important;padding:7px !important;color:#647467 !important;font-weight:bold !important;margin:5px 0 !important;-moz-border-radius:0 !important}.simple dt:first-child{margin:0 0 7px !important}
+
+.simple dd{color:#667467 !important;margin:0 10px !important;line-height:14px !important}.simple dd:last-child{margin:0 10px 10px !important}.damncr-infoctr{margin-top:-21px !important;margin-right:-17px !important}.damncr-infoctr .damncri-member,.damncr-infoctr{background:transparent url("https://orig00.deviantart.net/95f9/f/2018/237/4/2/liner2_by_jcoolarts-dcl60jw.png") center right no-repeat !important;padding-right:0 !important;border:none !important}
+
+.damncr-infoctr .damncri-member .avatar{padding:5px !important;background:#e6ede4 !important;border:1px solid #9fb1a3 !important;border-right:none !important;border-bottom:none !important;margin:0 0 1px !important;display:block !important;height:50px !important;width:50px !important;float:left !important}.damncr-infoctr .damncri-member .avatar img[alt]{color:#e6ede4 !important}.damncr-infoctr .damncri-member .bodyarea{background:#e6ede4 !important;padding:0 60px 0 0 !important;color:#647467 !important;margin:0 10px 0 0 !important;padding-left:60px !important;border:1px solid #9fb1a3 !important;border-right:none !important;min-height:60px !important;display:block !important}.damncr-infoctr .damncri-member .bodyarea a{color:#647467 !important}.damncr-infoctr .damncri-member .bodyarea ul{list-style-type:none !important;padding:0!important}.damncr-infoctr{background:none !important}.dAmnChatMember:hover{color:#3c84b8 !important}
+
+.damncrc-icon-roomname{display:none !important}.damncrc-iconbar{height:0 !important;margin-top:0 !important}.damncrc-iconbar span:before{content:"Controls: " !important;color:#848e8d !important;font-size:12px !important}.damncrc-iconbar span img{margin:0 0 !important;top:0px !important}.damncrc-iconbar-ctrls, .damncrc-iconbar-ctrls a{color:#848e8d !important}.damncrc-iconbar-ctrls a:hover{color:#3c84b8 !important}.damncrc-input{padding:5px 0 10px !important}.damncrc-input input, .damncrc-input textarea{margin:20px 0 0 0 !important;background:#fff !important;border-color:#a3b4a4 !important;border-style:solid !important;padding:5px !important;font-size:14px !important;font-family:arial !important;color:#687466 !important; caret-width:4px; caret-color: blue !important;}[value="send"]{margin:0!important}
+
+#modalspace i.fade{background:transparent url("https://orig00.deviantart.net/82b1/f/2018/237/6/6/square_by_jcoolarts-dcl616u.png") center center no-repeat !important;height:20px !important;width:20px !important}.modal a.x:hover{background:transparent url("http://s.deviantart.com/minish/chat/closebig.gif") center center no-repeat !important}.modal div form{background:#c0d2bb !important}
+
+body.deviant table.fora th strong, body.deviant table.forum th strong{border-bottom-color:#92A399 !important;color:#6C7F77 !important}table.fora th strong, table.forum th strong{border-bottom:1px solid #92a399 !important;font-size:9pt !important;font-weight:normal !important}.head td{color:#fff !important;background:transparent url("http://e.deviantart.com/emoticons/t/typerhappy.gif") no-repeat left center !important;padding:20px 0 5px 40px !important}table.fora td.f, table.forum td.f{background:#cedccb !important;border-color:#c0d2bb !important;padding:5px 10px !important}.damncrc-chat{}#sdprefsbtn{margin:8px 8px 0 0 !important}.superdamn-editbutton{margin:3px 2px 0 0 !important}.superdamn-buttonbar{position:relative !important;top:2px !important;left:6px !important}.tt-a{vertical-align:middle}.sidebar{width:204px}.msg .ts{color:#88938D;display:table-cell;font-size:90%;font-style:normal;font-weight:bold;padding:0 1px 0 0;vertical-align:middle;white-space:nowrap}.dAmnChatMember{padding:0px 4px !important;position:relative !important;left:-3px;white-space:nowrap}.dAmnChatMember img{position:relative;top:-2px}.msg.u-chibi-translator{background-color:#f1f1af !important}.msg.u-chibi-translator .ts{display:none !important}.msg.u-chibi-translator .from{display:none !important}.msg.u-chibi-translator .text{color:#990;font-style:italic;padding:6px}.msg.u-chibi-elvis{background-color:#c4e0f5 !important}.msg.u-chibi-elvis .ts{display:none !important}.msg.u-chibi-elvis .from{display:none !important}.msg.u-chibi-elvis .text{color:#0063a7;padding:6px}.msg.u-sharebot{background-color:#E6EDE6 !important}.msg.u-sharebot .ts{}.msg.u-sharebot .from{}.msg.u-sharebot .text{}.text .shadow-holder .shadow{background-image:none !important}.text .shadow-holder .shadow img{border:1px solid #AAB1A9}.text .shadow-holder .shadow span img{border:0px}.TheBundle_bigtmod_thumb{position:relative;z-index:0}.TheBundle_bigtmod_thumb:hover{z-index:50}.TheBundle_bigtmod_thumb span{position:absolute;background-color:#ccc;padding:0px;right:-1000px;border:1px solid #AAB1A9;display:none;color:black;text-decoration:none;user-select:none;-o-user-select:none;-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none}.TheBundle_bigtmod_thumb spannimg{border-width:0;padding:0px}.TheBundle_bigtmod_thumb:hover span{display:block}.damncr-members dl dt{border-radius:0px 0px 0px 0px !important;border-top-left-radius:0px !important;border-top-right-radius:0px !important;border-bottom-right-radius:0px !important;border-bottom-left-radius:0px !important}.damncrc-input input{max-width:100%;width:calc(100% - 12px)}
+
+#settingsbutton {position:absolute;top:5px;cursor:pointer;right:101px;z-index:999; opacity:1;}
+
+#sdprefsbtn {
+    position: absolute;
+    top: -3px;
+    right: 68px;
+    cursor: pointer;
+}
+
+::before.username {background:none:}
+::after.username {background:none:}
+.damncrc-input {
+    padding: 5px 0 9px !important;
+}
+
+.damn-lo-row-bottom {
+    position: absolute;
+    bottom: -2px;
+    width: 100%;
+}
+
+div#output>div.orders {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 9px;
+    height: 27px;
+    border-bottom: 1px solid #a6b2a6;
+    text-align: center;
+    padding-top: 13px;
+    padding-left: 20px;
+    margin-bottom: 18px;
+    background-color: #e7eee5;
+}
+
+div#output div.orders a {
+    padding-right: 8px;
+    margin-top: 0px;
+    color: #337287;
+    position: static;
+    block: unset;
+}
+
+.modal .menucompatible {
+    visibility: visible !important;
+    padding: 0px;
+}
+
+div#modalspace div.modal {
+    z-index: 201;
+    width: 400px;
+}
+
+div#modalspace div.modal::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+div.modal.modal-rounded a.x {
+	background: url("https://orig00.deviantart.net/4621/f/2018/237/b/6/close_by_jcoolarts-dcl5c2h.gif") no-repeat 0 0;
+	width: 12px;
+	height: 12px;
+	top: 15px;
+	right: 15px;
+	position: absolute;
+	display: block;
+}
