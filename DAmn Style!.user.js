@@ -1,5 +1,4 @@
 // ==UserScript==
-// @run-at document-start
 // @name         DAmn Styler + Autojoin!
 // @namespace    https://www.deviantart.com/jcoolarts
 // @version      0.1
@@ -675,7 +674,7 @@ function freeFunctionString(str){
 	return str.replace(/^\s*function\s*\(\)\s*\{/, "").replace(/\}\s*$/, "")
 }
 
-
+// @run-at document-start
 
 $(function() {
             $(document).ready(function() { // Wait for the page to load
